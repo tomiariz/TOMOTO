@@ -1,0 +1,22 @@
+{
+  "name": "@tomoto/ui",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./styles": "./src/styles/index.css"
+  },
+  "scripts": {
+    "dev": "echo 'UI package ready'",
+    "build": "echo 'UI package built'",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.28.0"
+  }
+}

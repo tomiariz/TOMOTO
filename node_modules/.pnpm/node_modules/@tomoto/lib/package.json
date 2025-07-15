@@ -1,0 +1,23 @@
+{
+  "name": "@tomoto/lib",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./hooks": "./src/hooks/index.js",
+    "./utils": "./src/utils/index.js",
+    "./supabase": "./src/supabase/index.js"
+  },
+  "scripts": {
+    "dev": "echo 'Lib package ready'",
+    "build": "echo 'Lib package built'",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
