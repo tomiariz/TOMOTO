@@ -1,6 +1,7 @@
 import { ProductGrid } from '@tomoto/ui';
 import { useCartStore } from '../store/cartStore';
 import { mockProducts } from '../data/mockProducts';
+import { useState, useEffect } from "react";
 
 function Home() {
   const addItem = useCartStore(state => state.addItem);
@@ -11,36 +12,44 @@ function Home() {
     alert('Producto agregado al carrito');
   };
 
+  const images = [
+    "/tomoto1-grey-die-cut.png",
+    "/tomoto1-earth-die-cut.png",
+    "/tomoto1-balck-die-cut.png",
+  ];
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 3000); // Cambia cada 3 segundos
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar
+  }, [images.length]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-surface-50 to-surface-100">
+    <div className="min-h-screen  relative">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Gradiente de fondo */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600"></div>
-        
-        {/* Efectos visuales */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      <section className="relative overflow-hidden h-screen m-20">
+        {/* Fondo con imágenes cambiantes */}
+        <div className="absolute inset-0 h-full">
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Fondo ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                index === currentImage ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
         </div>
-        
-        <div className="relative container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+
+        {/* Contenido */}
+        <div className="relative flex flex-col justify-center items-center h-full z-10">
           <div className="text-center animate-fade-in">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-              Bienvenido a
-              <span className="block bg-gradient-to-r from-white to-primary-100 bg-clip-text text-transparent">
-                TOMOTO
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-12 text-white/80 max-w-2xl mx-auto">
-              Descubrí los mejores productos con diseño moderno y tecnología de vanguardia
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary-600 font-semibold px-8 py-4 rounded-2xl shadow-strong hover:shadow-glow hover:-translate-y-1 transition-all duration-300 active:scale-95">
+              <button className="bg-white/80 backdrop-blur-xs text-black font-bold px-8 py-4 rounded-full shadow-strong hover:shadow-glow hover:-translate-y-1 transition-all duration-300 active:scale-95 font-sans">
                 Explorar productos
-              </button>
-              <button className="bg-white/20 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 active:scale-95">
-                Ver ofertas
               </button>
             </div>
           </div>

@@ -10,16 +10,16 @@ export default {
       colors: {
         // Colores principales tipo iOS
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#fffde7',
+          100: '#fff9c4',
+          200: '#fff59d',
+          300: '#fff176',
+          400: '#ffee58',
+          500: '#ffeb3b',
+          600: '#fdd835',
+          700: '#fbc02d',
+          800: '#f9a825',
+          900: '#f57f17',
         },
         // Grises modernos
         gray: {
@@ -49,7 +49,17 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans: [
+          '"VAG Rounded LT W04 Black"',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'SF Pro Display',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif'
+        ],
       },
       fontSize: {
         'display-lg': ['4rem', { lineHeight: '1.1', fontWeight: '700' }],
