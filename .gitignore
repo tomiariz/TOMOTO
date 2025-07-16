@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 # Local Netlify folder
 .netlify
+=======
+node_modules
+>>>>>>> pruebas1

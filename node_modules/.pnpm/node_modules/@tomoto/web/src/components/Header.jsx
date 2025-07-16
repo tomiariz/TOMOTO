@@ -1,71 +1,96 @@
-import { Link } from 'react-router-dom';
-import { useCartStore } from '../store/cartStore';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { HiOutlineNewspaper, HiOutlineCollection, HiOutlineStar, HiOutlineSearch } from "react-icons/hi";
+
+const navItems = [
+  { to: '/', label: 'Inicio', icon: HiOutlineNewspaper },
+  { to: '/productos', label: 'Productos', icon: HiOutlineCollection },
+  { to: '/deportes', label: 'Deportes', icon: HiOutlineStar },
+];
 
 function Header() {
-  const cartItems = useCartStore(state => state.items);
-  const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const location = useLocation();
+  const [searchActive, setSearchActive] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const selectedIdx = navItems.findIndex(item => item.to === location.pathname) !== -1
+    ? navItems.findIndex(item => item.to === location.pathname)
+    : 1;
+
+  // Maneja la animación y el input
+  const handleSearchClick = () => {
+    setSearchActive(true);
+    setTimeout(() => setShowInput(true), 400); // espera a que la animación termine
+  };
+
+  const handleInputBlur = () => {
+    setShowInput(false);
+    setTimeout(() => setSearchActive(false), 400); // espera a que el input desaparezca antes de ocultar el overlay
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-200">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <div className="bg-gradient-to-br from-primary-400 to-primary-600 w-10 h-10 rounded-2xl flex items-center justify-center mr-3 shadow-medium group-hover:shadow-strong transition-all duration-300">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-              TOMOTO
-            </span>
-          </Link>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-2">
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-primary-600 hover:bg-primary-50 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
-            >
-              Inicio
-            </Link>
-            <Link
-              to="/productos"
-              className="text-gray-700 hover:text-primary-600 hover:bg-primary-50 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
-            >
-              Productos
-            </Link>
-            <Link
-              to="/nosotros"
-              className="text-gray-700 hover:text-primary-600 hover:bg-primary-50 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
-            >
-              Nosotros
-            </Link>
-          </nav>
-
-          {/* Cart */}
-          <Link
-            to="/carrito"
-            className="relative bg-surface-100 hover:bg-surface-200 p-3 rounded-xl transition-all duration-200 group"
+    <header className="w-full flex justify-center mt-4 mb-8 fixed top-0 z-50">
+      <div className="relative flex items-center w-full h-14 max-w-sm bg-white/30 backdrop-blur-md shadow-medium rounded-3xl">
+        {/* Selector animado */}
+        {!searchActive && (
+          <div
+            className="absolute left-0 h-14 w-1/3 transition-all duration-300 pointer-events-none flex justify-center items-center"
+            style={{
+              transform: `translateX(${selectedIdx * 100}%)`,
+              zIndex: 0,
+            }}
           >
-            <svg
-              className="w-6 h-6 text-gray-700 group-hover:text-primary-600 transition-colors"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 11-4 0v-6m4 0V9a2 2 0 10-4 0v4.01"
-              />
-            </svg>
-            {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-gradient-to-br from-primary-400 to-primary-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-medium shadow-medium">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-        </div>
+            <div className="w-full h-12 rounded-2xl bg-white/90 backdrop-blur-xs shadow-strong m-1" />
+          </div>
+        )}
+
+        {/* Overlay animado para búsqueda */}
+        <div
+          className={`absolute right-0 top-0 h-full bg-gray-100 transition-all duration-500 ease-in-out z-20 ${searchActive ? "w-full" : "w-0"}`}
+          style={{ borderRadius: "1.5rem" }}
+        />
+
+        {/* Menú principal o input de búsqueda */}
+        <nav className={`flex flex-1 relative z-30 transition-all duration-500 ${searchActive ? "opacity-0 pointer-events-none" : "opacity-100"} font-sans`}>
+          {navItems.map((item, idx) => {
+            const Icon = item.icon;
+            const selected = idx === selectedIdx;
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="w-full flex flex-col items-center justify-center"
+              >
+                <span className={`text-md font-medium ${selected ? 'text-black' : 'text-gray-500'} group-hover:text-primary-600 transition-colors`}>
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Input de búsqueda animado */}
+        {showInput && (
+          <input
+            autoFocus
+            type="text"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            placeholder="Buscar productos..."
+            className="absolute right-0 top-0 h-full w-full px-6 rounded-3xl bg-gray-100 text-black z-30 outline-none transition-all duration-500"
+            style={{ borderRadius: "1.5rem" }}
+            onBlur={handleInputBlur}
+          />
+        )}
+
+        {/* Botón flotante */}
+        <button
+          type="button"
+          onClick={handleSearchClick}
+          className="absolute -right-6 top-1/2 -translate-y-1/2 bg-gradient-to-br from-primary-400 to-primary-600 w-12 h-12 rounded-full flex items-center justify-center shadow-glow hover:scale-105 transition-all z-40"
+        >
+          <HiOutlineSearch className="w-6 h-6 text-white" />
+        </button>
       </div>
     </header>
   );

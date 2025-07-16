@@ -7,13 +7,15 @@ import Cart from './pages/Cart'
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/producto/:id" element={<Product />} />
-          <Route path="/carrito" element={<Cart />} />
-        </Routes>
-      </Layout>
+      <div>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/producto/:id" element={<Product />} />
+            <Route path="/carrito" element={<Cart />} />
+          </Routes>
+        </Layout>
+      </div>
     </Router>
   )
 }

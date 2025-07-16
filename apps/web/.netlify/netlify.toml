@@ -1,0 +1,30 @@
+functionsDirectory = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "pnpm build"
+functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]

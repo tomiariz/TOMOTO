@@ -1,3 +1,5 @@
+@import url('https://db.onlinewebfonts.com/c/54a7fd684402df9d4a2d488e07729247?family=VAG+Rounded+LT+W04+Black');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +17,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
     color: #171717;
     margin: 0;
     line-height: 1.6;
@@ -44,6 +46,10 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    font-family: "VAG Rounded LT W04 Black", -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
@@ -147,3 +153,4 @@
     background-color: #f9f9f9;
   }
 }
+
