@@ -67,7 +67,7 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 flex justify-center mt-4 mb-8 z-50 px-4">
+    <header className="fixed bottom-0 left-0 right-0 flex justify-center mb-4 z-50 px-4">
       <div className="relative flex items-center w-full max-w-md h-14 bg-white/30 backdrop-blur-md shadow-medium rounded-3xl overflow-visible">
         {/* Selector animado */}
         {!searchActive && selectedIdx !== -1 && (

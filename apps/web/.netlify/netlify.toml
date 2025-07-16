@@ -12,8 +12,8 @@ redirects = []
 publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\apps\\web\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web"
 command = "pnpm build"
+base = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web"
 functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\netlify\\functions"
 
 [build.environment]
