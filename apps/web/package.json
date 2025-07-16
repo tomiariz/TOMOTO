@@ -11,10 +11,12 @@
     "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
-    "@tomoto/ui": "workspace:*",
     "@tomoto/lib": "workspace:*",
+    "@tomoto/ui": "workspace:*",
+    "i18next": "^25.3.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-i18next": "^15.6.0",
     "react-router-dom": "^6.28.0",
     "zustand": "^5.0.1"
   },

@@ -1,13 +1,41 @@
 import { useParams, Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
-import { mockProducts } from '../data/mockProducts';
+
+// Usa el mismo array que en Home/Store
+const customProducts = [
+  {
+    id: 1,
+    name: "Tomoto Grey",
+    description: "Edición especial gris, diseño minimalista.",
+    price: 25000,
+    image: "/tomoto1-grey-die-cut.png",
+    inStock: true,
+  },
+  {
+    id: 2,
+    name: "Tomoto Earth",
+    description: "Inspirado en la naturaleza, edición Earth.",
+    price: 27000,
+    image: "/tomoto1-earth-die-cut.png",
+    inStock: true,
+  },
+  {
+    id: 3,
+    name: "Tomoto Black",
+    description: "Clásico y elegante, edición Black.",
+    price: 26000,
+    image: "/tomoto1-balck-die-cut.png",
+    inStock: true,
+  },
+];
 
 function Product() {
   const { id } = useParams();
   const addItem = useCartStore(state => state.addItem);
-  
-  const product = mockProducts.find(p => p.id === parseInt(id));
-  
+
+  // Busca el producto en customProducts
+  const product = customProducts.find(p => p.id === parseInt(id));
+
   if (!product) {
     return (
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -28,7 +56,6 @@ function Product() {
 
   const handleAddToCart = () => {
     addItem(product);
-    // Aquí podrías agregar una notificación
     alert('Producto agregado al carrito');
   };
 

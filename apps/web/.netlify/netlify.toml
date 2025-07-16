@@ -9,7 +9,7 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\apps\\web\\dist"
+publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "pnpm build"

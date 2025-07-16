@@ -22,12 +22,11 @@ function Footer() {
                 />
               </div>
               <span className="text-3xl text-white bg-clip-text text-transparent font-sans">
-                TOMOTO &copy;
+                TOMOTO&reg;
               </span>
             </Link>
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-              Tu tienda online de confianza. Encontrá los mejores productos con
-              diseño moderno y tecnología de vanguardia.
+              Creá, aunque nadie entienda.
             </p>
             
             {/* Redes sociales */}
@@ -100,13 +99,18 @@ function Footer() {
                 </svg>
                 +54 11 1234-5678
               </li>
-              <li className="flex items-center text-gray-300">
-                <svg className="w-5 h-5 mr-3 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Buenos Aires, Argentina
-              </li>
+                <li className="flex items-center text-gray-300">
+                  <svg className="w-5 h-5 mr-3 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Argentina 
+                  <svg width="24" height="16" viewBox="0 0 24 16" className="ml-2" aria-label="Bandera Argentina">
+                    <rect width="24" height="16" fill="#74ACDF"/>
+                    <rect y="5.33" width="24" height="5.33" fill="#fff"/>
+                    <circle cx="12" cy="8" r="1.2" fill="#FFD600"/>
+                  </svg>
+                </li>
             </ul>
           </div>
 
@@ -152,7 +156,7 @@ function Footer() {
 
         <div className="border-t border-white/20 mt-12 mb-12 pt-8 text-center">
           <p className="text-gray-300">
-            &copy; 2025 TOMOTO. Todos los derechos reservados. Diseñado con ❤️ para una mejor experiencia.
+            &copy; 2025 TOMOTO&reg;. Todos los derechos reservados. Diseñado con ❤️ para una mejor experiencia.
           </p>
         </div>
       </div>

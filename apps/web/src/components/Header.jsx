@@ -1,16 +1,19 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { HiOutlineNewspaper, HiOutlineCollection, HiOutlineStar, HiOutlineSearch } from "react-icons/hi";
+import { HiOutlineNewspaper, HiOutlineCollection, HiOutlineStar, HiOutlineSearch, HiOutlineShoppingCart } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 
 const navItems = [
-  { to: '/', label: 'Inicio', icon: HiOutlineNewspaper },
-  { to: '/tienda', label: 'Tienda', icon: HiOutlineCollection },
-  { to: '/about', label: 'About', icon: HiOutlineStar },
-  { to: '/contacto', label: 'Contacto', icon: HiOutlineStar },
+  { to: '/', label: 'Home', icon: HiOutlineNewspaper },
+  { to: '/tienda', label: 'STORE', icon: HiOutlineCollection },
+  { to: '/carrito', label: '', icon: HiOutlineShoppingCart }, // <-- Cart link agregado aquí
+  { to: '/about', label: 'ABOUT', icon: HiOutlineStar },
+  { to: '/contacto', label: 'FOLLOW', icon: HiOutlineStar },
 ];
 
 function Header() {
   const location = useLocation();
+  const { i18n } = useTranslation();
   const [searchActive, setSearchActive] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -81,6 +84,10 @@ function Header() {
     }
   };
 
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "es" : "en");
+  };
+
   return (
     <header className="fixed bottom-0 left-0 right-0 flex justify-center mb-4 z-50 px-4">
       <div className="relative flex items-center w-full max-w-md h-14 bg-white/30 backdrop-blur-md shadow-medium rounded-3xl overflow-hidden">
@@ -125,15 +132,25 @@ function Header() {
                     className="w-8 h-8 object-contain"
                     style={{ marginBottom: 2 }}
                   />
-                ) : (
+                ) : item.label ? (
                   <span
                     className={`text-md font-medium text-black transition-colors ${idx === selectedIdx ? 'font-bold' : ''}`}
                   >
                     {item.label}
                   </span>
+                ) : (
+                  <item.icon className={`w-6 h-6 mx-auto ${idx === selectedIdx ? 'text-primary-600' : 'text-black'}`} />
                 )}
               </Link>
             ))}
+            {/* Botón de toggle de idioma al final de la fila */}
+            <button
+              onClick={toggleLanguage}
+              className="inline-flex items-center justify-center min-w-[60px] h-10 px-3 py-1 rounded-2xl bg-primary-600 text-white text-xs font-bold ml-2"
+              style={{ marginBottom: 2 }}
+            >
+              {i18n.language === "en" ? "ES" : "EN"}
+            </button>
           </div>
           {/* Botón de búsqueda fijo, fuera del scroll */}
           <button

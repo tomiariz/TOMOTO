@@ -34,42 +34,32 @@ function Cart() {
         <div className="lg:col-span-2">
           <div className="bg-white rounded-lg shadow-sm border">
             {items.map(item => (
-              <div key={item.id} className="p-6 border-b last:border-b-0">
-                <div className="flex items-center space-x-4">
+              <div key={item.id} className="p-4 border-b last:border-b-0">
+                <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-3 min-w-0">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-20 object-cover rounded-lg"
+                    className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
                   />
-                  
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">{item.name}</h3>
-                    <p className="text-gray-600">${item.price.toLocaleString()}</p>
+                  <div className="flex-1 min-w-0 flex flex-col justify-center">
+                    <h3 className="font-semibold text-gray-900 truncate">{item.name}</h3>
+                    <p className="text-gray-600 text-sm">${item.price.toLocaleString()}</p>
                   </div>
-                  
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center gap-2 mt-2 sm:mt-0">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300"
-                    >
-                      -
-                    </button>
-                    
-                    <span className="w-8 text-center font-semibold">
-                      {item.quantity}
-                    </span>
-                    
+                    >-</button>
+                    <span className="w-6 text-center font-semibold">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300"
-                    >
-                      +
-                    </button>
+                    >+</button>
                   </div>
-                  
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-red-500 hover:text-red-700 ml-4"
+                    className="text-red-500 hover:text-red-700 ml-2 flex-shrink-0"
+                    title="Eliminar"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
