@@ -29,7 +29,7 @@ function Home() {
   return (
     <div className="min-h-screen  relative">
       {/* Hero Section */}
-      <section className="relative overflow-hidden h-screen m-20">
+      <section className="relative overflow-hidden h-screen mt-20 mb-20">
         {/* Fondo con imágenes cambiantes */}
         <div className="absolute inset-0 h-full">
           {images.map((image, index) => (

@@ -1,7 +1,7 @@
 # example netlify.toml
 [build]
+  base = "apps/web"
   command = "pnpm build"
-  functions = "netlify/functions"
   publish = "apps/web/dist"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.

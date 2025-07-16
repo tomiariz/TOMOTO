@@ -1,5 +1,5 @@
-functionsDirectory = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\netlify\\functions"
-functionsDirectoryOrigin = "config-v1"
+functionsDirectory = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\netlify\\functions"
+functionsDirectoryOrigin = "ui"
 plugins = []
 headers = []
 redirects = []
@@ -9,11 +9,12 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\dist"
+publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\apps\\web\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
+base = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web"
 command = "pnpm build"
-functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\netlify\\functions"
+functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\netlify\\functions"
 
 [build.environment]
 
