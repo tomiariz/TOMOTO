@@ -4,8 +4,9 @@ import { HiOutlineNewspaper, HiOutlineCollection, HiOutlineStar, HiOutlineSearch
 
 const navItems = [
   { to: '/', label: 'Inicio', icon: HiOutlineNewspaper },
-  { to: '/productos', label: 'Productos', icon: HiOutlineCollection },
-  { to: '/deportes', label: 'Deportes', icon: HiOutlineStar },
+  { to: '/tienda', label: 'Tienda', icon: HiOutlineCollection },
+  { to: '/about', label: 'About', icon: HiOutlineStar },
+  { to: '/contacto', label: 'Contacto', icon: HiOutlineStar },
 ];
 
 function Header() {
@@ -15,19 +16,33 @@ function Header() {
   const [searchValue, setSearchValue] = useState("");
   const selectedIdx = navItems.findIndex(item => item.to === location.pathname);
 
-  // Refs para cada link
+  // Refs para cada link y el contenedor scrollable
   const linkRefs = useRef([]);
+  const scrollRef = useRef(null);
   const [selectorStyle, setSelectorStyle] = useState({ left: 0, width: 0 });
 
   useLayoutEffect(() => {
-    if (selectedIdx !== -1 && linkRefs.current[selectedIdx]) {
+    if (selectedIdx !== -1 && linkRefs.current[selectedIdx] && scrollRef.current) {
       const el = linkRefs.current[selectedIdx];
+      const scrollLeft = scrollRef.current.scrollLeft;
       setSelectorStyle({
-        left: el.offsetLeft,
+        left: el.offsetLeft - scrollLeft,
         width: el.offsetWidth,
       });
     }
   }, [selectedIdx, showInput, searchActive]);
+
+  // Función para actualizar el selector al hacer scroll
+  const handleScroll = () => {
+    if (selectedIdx !== -1 && linkRefs.current[selectedIdx] && scrollRef.current) {
+      const el = linkRefs.current[selectedIdx];
+      const scrollLeft = scrollRef.current.scrollLeft;
+      setSelectorStyle({
+        left: el.offsetLeft - scrollLeft,
+        width: el.offsetWidth,
+      });
+    }
+  };
 
   // Función para ejecutar búsqueda y cerrar
   const executeSearch = () => {
@@ -68,11 +83,11 @@ function Header() {
 
   return (
     <header className="fixed bottom-0 left-0 right-0 flex justify-center mb-4 z-50 px-4">
-      <div className="relative flex items-center w-full max-w-md h-14 bg-white/30 backdrop-blur-md shadow-medium rounded-3xl overflow-visible">
+      <div className="relative flex items-center w-full max-w-md h-14 bg-white/30 backdrop-blur-md shadow-medium rounded-3xl overflow-hidden">
         {/* Selector animado */}
         {!searchActive && selectedIdx !== -1 && (
           <div
-            className="absolute top-0 h-14 transition-all duration-300 pointer-events-none flex items-center"
+            className="absolute top-0 h-14 pointer-events-none flex items-center transition-[left,width] duration-300"
             style={{
               left: selectorStyle.left,
               width: selectorStyle.width,
@@ -90,31 +105,46 @@ function Header() {
         />
 
         {/* Menú principal o input de búsqueda */}
-        <nav className={`flex flex-1 items-center justify-between gap-x-4 relative z-30 transition-all duration-500 ${searchActive ? "opacity-0 pointer-events-none" : "opacity-100"} font-sans`}>
-          <div className="flex flex-1 items-center gap-x-4">
+        <nav className={`relative w-full flex items-center z-30 transition-all duration-500 ${searchActive ? "opacity-0 pointer-events-none" : "opacity-100"} font-sans`}>
+          <div 
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="overflow-x-auto whitespace-nowrap no-scrollbar flex items-center gap-x-2 w-full pr-[56px]"
+          >
             {navItems.map((item, idx) => (
               <Link
                 key={item.to}
                 to={item.to}
                 ref={el => linkRefs.current[idx] = el}
-                className="flex flex-col items-center justify-center flex-1"
+                className="inline-flex shrink-0 flex-col items-center justify-center min-w-[80px] sm:min-w-[100px]"
               >
-                <span className={`text-md font-medium ${idx === selectedIdx ? 'text-black' : 'text-gray-500'} group-hover:text-primary-600 transition-colors`}>
-                  {item.label}
-                </span>
+                {idx === 0 ? (
+                  <img
+                    src="/LOGO.png"
+                    alt="Inicio"
+                    className="w-8 h-8 object-contain"
+                    style={{ marginBottom: 2 }}
+                  />
+                ) : (
+                  <span
+                    className={`text-md font-medium text-black transition-colors ${idx === selectedIdx ? 'font-bold' : ''}`}
+                  >
+                    {item.label}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
+          {/* Botón de búsqueda fijo, fuera del scroll */}
           <button
             type="button"
             onClick={handleSearchClick}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 shadow-glow hover:scale-105 transition-all z-40 ml-2"
-            style={{ margin: '4px' }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 shadow-glow hover:scale-105 transition-all z-40"
           >
-            <HiOutlineSearch className="w-6 h-6 text-white" />
+            <HiOutlineSearch className="w-5 h-5 text-white" />
           </button>
         </nav>
-
+        
         {/* Input de búsqueda animado */}
         {showInput && (
           <input

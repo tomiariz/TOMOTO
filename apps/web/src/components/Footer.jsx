@@ -14,11 +14,15 @@ function Footer() {
           {/* Logo y descripción */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center mb-6">
-              <div className="bg-gradient-to-br from-primary-400 to-primary-600 w-12 h-12 rounded-2xl flex items-center justify-center mr-4 shadow-strong">
-                <span className="text-white font-bold text-xl">T</span>
+              <div className=" w-12 h-12 rounded-2xl flex items-center justify-center mr-4 shadow-strong overflow-hidden">
+                <img
+                  src="/LOGO.png"
+                  alt="TOMOTO Logo"
+                  className="w-10 h-10 object-contain"
+                />
               </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-white to-primary-100 bg-clip-text text-transparent">
-                TOMOTO
+              <span className="text-3xl text-white bg-clip-text text-transparent font-sans">
+                TOMOTO &copy;
               </span>
             </Link>
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
@@ -105,9 +109,48 @@ function Footer() {
               </li>
             </ul>
           </div>
+
+          {/* Información Legal */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6 text-white">Información Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/terminos"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Términos y Condiciones
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/privacidad"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Política de Privacidad
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/envios"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Envíos y Devoluciones
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/cookies"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  Política de Cookies
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="border-t border-white/20 mt-12 pt-8 text-center">
+        <div className="border-t border-white/20 mt-12 mb-12 pt-8 text-center">
           <p className="text-gray-300">
             &copy; 2025 TOMOTO. Todos los derechos reservados. Diseñado con ❤️ para una mejor experiencia.
           </p>
