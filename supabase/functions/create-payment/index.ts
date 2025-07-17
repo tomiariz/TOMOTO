@@ -147,7 +147,7 @@ serve(async (req) => {
       JSON.stringify({
         order_id: order.id,
         init_point: mpData.init_point,
-        sandbox_init_point: mpData.sandbox_init_point, // <-- 🔥 Clave para entorno de pruebas
+        sandbox_init_point: mpData.sandbox_init_point || mpData.init_point, // <-- Agregar esto
         preference_id: mpData.id,
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
