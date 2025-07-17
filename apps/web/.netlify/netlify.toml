@@ -1,20 +1,19 @@
-functionsDirectory = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\netlify\\functions"
+functionsDirectory = "C:\\Users\\tomia\\Desktop\\FOLDERS\\Brands\\1.TOMOTO\\tomoto.com.ar\\TOMOTO\\apps\\web\\netlify\\functions"
 functionsDirectoryOrigin = "ui"
 plugins = []
 headers = []
-redirects = []
 
 [functions]
 
 [functions."*"]
 
 [build]
-publish = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\dist"
+publish = "C:\\Users\\tomia\\Desktop\\FOLDERS\\Brands\\1.TOMOTO\\tomoto.com.ar\\TOMOTO\\apps\\web\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
+base = "C:\\Users\\tomia\\Desktop\\FOLDERS\\Brands\\1.TOMOTO\\tomoto.com.ar\\TOMOTO\\apps\\web"
 command = "pnpm build"
-base = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web"
-functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO\\apps\\web\\netlify\\functions"
+functions = "C:\\Users\\tomia\\Desktop\\FOLDERS\\Brands\\1.TOMOTO\\tomoto.com.ar\\TOMOTO\\apps\\web\\netlify\\functions"
 
 [build.environment]
 
@@ -29,3 +28,15 @@ functions = "C:\\Users\\Administrador\\Desktop\\FOLDERS\\Web Development\\TOMOTO
 [build.processing.js]
 
 [build.services]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

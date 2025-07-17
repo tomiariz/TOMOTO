@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const customProducts = [
   {
-    id: 1,
+    id: "38fa874d-dc07-43f1-9132-87cb93015e96",
     name: "Tomoto Grey",
     description: "Edición especial gris, diseño minimalista.",
     price: 25000,
@@ -13,7 +13,7 @@ const customProducts = [
     inStock: true,
   },
   {
-    id: 2,
+    id: "96958a0b-eaae-44ae-981c-d25fb3958ab5",
     name: "Tomoto Earth",
     description: "Inspirado en la naturaleza, edición Earth.",
     price: 27000,
@@ -21,7 +21,7 @@ const customProducts = [
     inStock: true,
   },
   {
-    id: 3,
+    id: "22e5612f-6900-4d66-8223-7c0ce74337c1",
     name: "Tomoto Black",
     description: "Clásico y elegante, edición Black.",
     price: 26000,

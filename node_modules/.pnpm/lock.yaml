@@ -52,6 +52,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.51.0
+        version: 2.51.0
       '@tomoto/lib':
         specifier: workspace:*
         version: link:../../packages/lib

@@ -2,6 +2,7 @@ import { useState, useRef, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiOutlineNewspaper, HiOutlineCollection, HiOutlineStar, HiOutlineSearch, HiOutlineShoppingCart } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
+import { useCartStore } from '../store/cartStore';
 
 const navItems = [
   { to: '/', label: 'Home', icon: HiOutlineNewspaper },
@@ -18,6 +19,8 @@ function Header() {
   const [showInput, setShowInput] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const selectedIdx = navItems.findIndex(item => item.to === location.pathname);
+  const { items } = useCartStore();
+  const cartCount = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
   // Refs para cada link y el contenedor scrollable
   const linkRefs = useRef([]);
@@ -123,7 +126,7 @@ function Header() {
                 key={item.to}
                 to={item.to}
                 ref={el => linkRefs.current[idx] = el}
-                className="inline-flex shrink-0 flex-col items-center justify-center min-w-[80px] sm:min-w-[100px]"
+                className="inline-flex shrink-0 flex-col items-center justify-center min-w-[80px] sm:min-w-[100px] relative"
               >
                 {idx === 0 ? (
                   <img
@@ -138,6 +141,15 @@ function Header() {
                   >
                     {item.label}
                   </span>
+                ) : item.to === '/carrito' ? (
+                  <div className="relative">
+                    <item.icon className={`w-6 h-6 mx-auto ${idx === selectedIdx ? 'text-primary-600' : 'text-black'}`} />
+                    {cartCount > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center">
+                        {cartCount}
+                      </span>
+                    )}
+                  </div>
                 ) : (
                   <item.icon className={`w-6 h-6 mx-auto ${idx === selectedIdx ? 'text-primary-600' : 'text-black'}`} />
                 )}

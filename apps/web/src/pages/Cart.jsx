@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
+import { CheckoutButton } from '../components/CheckoutButton';
+import { CheckoutForm } from '../components/CheckoutForm';
 
 function Cart() {
   const { items, updateQuantity, removeItem, clearCart, getTotal } = useCartStore();
-  
+
   if (items.length === 0) {
     return (
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -95,9 +97,7 @@ function Cart() {
               </div>
             </div>
             
-            <button className="w-full bg-tomoto-600 text-white py-3 rounded-lg font-semibold hover:bg-tomoto-700 transition-colors mb-4">
-              Proceder al pago
-            </button>
+            <CheckoutForm items={items} />
             
             <button
               onClick={clearCart}
